@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SPFreak - Sun Safety Reminders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">
+      <span class="sun-icon">☀️</span>
+      <span class="brand-text">SPFreak</span>
+    </div>
+
+    <label for="menu-toggle" class="menu-icon">☰</label>
+    <input type="checkbox" id="menu-toggle" hidden>
+
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#uv-section">Check UV</a>
+      <a href="#spf-tips">SPF Tips</a>
+      <a href="#hero">About</a>
+      <a href="#">Login</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Never Forget Your Sunscreen Again!</h1>
+      <p>Get real-time UV alerts based on your location and stay sun-safe every day with SPFreak.</p>
+      <a href="#uv-section" class="hero-btn">Get UV Alert</a>
+    </div>
+  </section>
+
+  <!-- UV SECTION (Target of Hero Button) -->
+  <section class="uv-section" id="uv-section">
+    <h2>Live UV Information</h2>
+    <p>Enter your location coordinates to check the UV index:</p>
+    <form id="myForm" method="post">
+        <label for="latInput">Latitude:</label>
+        <input type="number" id="latInput" name="latitude" step="any">
+        <label for="lngInput">Longitude:</label>
+        <input type="number" id="lngInput" name="longitude" step="any">
+        <input id="get" type="submit" value="☀️ SPF Me!" formaction="/apiKey" class="glow-button">
+    </form>
+    <div class="response-area">
+  <% if (content && content.result) { %>
+    <p>UV Index: <%= content.result.uv %></p>
+
+    <% if (content.result.uv >= 0 && content.result.uv <= 2) { %>
+      <h3>Low risk. No sunscreen needed unless you have very sensitive skin.</h3>
+    <% } else if (content.result.uv > 2 && content.result.uv <= 5) { %>
+      <h3>Moderate risk. Apply SPF 30+ if you're outside for more than 30 minutes.</h3>
+    <% } else if (content.result.uv > 5 && content.result.uv <= 7) { %>
+      <h3>High risk. Use SPF 30–50. Wear a hat and sunglasses.</h3>
+    <% } else if (content.result.uv > 7 && content.result.uv <= 10) { %>
+      <h3>Very high risk. Use SPF 50+. Stay in the shade between 10am–4pm.</h3>
+    <% } else if (content.result.uv > 10) { %>
+      <h3>Extreme risk. Use SPF 50+. Limit sun exposure and cover your skin completely.</h3>
+    <% } else { %>
+      <h3>Invalid UV index.</h3>
+    <% } %>
+  <% } %>
+</div>
+
+
+  </section>
+
+
+  <!-- SPF TIPS SECTION -->
+<section class="spf-tips" id="spf-tips">
+  <h2>☀️ Top SPF Tips to Stay Sun-Safe</h2>
+  <div class="tips-grid">
+
+    <div class="tip-card">
+      <h3>🧴 Use Broad-Spectrum</h3>
+      <p>Protects you from both UVA (aging) and UVB (burning) rays.</p>
+    </div>
+
+    <div class="tip-card">
+      <h3>🔢 Choose SPF 30+</h3>
+      <p>SPF 30+ is great for daily use, SPF 50+ for intense sun exposure.</p>
+    </div>
+
+    <div class="tip-card">
+      <h3>🥄 Apply Generously</h3>
+      <p>Use a shot-glass full for your body. Two fingers for face and neck.</p>
+    </div>
+
+    <div class="tip-card">
+      <h3>⏱ Reapply Every 2 Hours</h3>
+      <p>Sunscreen wears off — reapply especially after sweat or swim.</p>
+    </div>
+
+    <div class="tip-card">
+      <h3>☁️ Wear It on Cloudy Days</h3>
+      <p>80% of UV rays pass through clouds. Don’t skip sunscreen!</p>
+    </div>
+
+    <div class="tip-card">
+      <h3>⏳ Apply Before Sun</h3>
+      <p>Apply 15–30 minutes before stepping out so it activates properly.</p>
+    </div>
+
+    <!-- <div class="tip-card">
+      <h3>💋 Don’t Forget Your Lips</h3>
+      <p>Use lip balm with SPF 15+ to prevent sunburned lips.</p>
+    </div> -->
+
+    <div class="tip-card">
+      <h3>📅 Check Expiry Date</h3>
+      <p>Old sunscreen loses potency. Replace expired bottles.</p>
+    </div>
+
+    <div class="tip-card">
+      <h3>🧢 Wear UV-Protective Gear</h3>
+      <p>Use sunglasses, wide-brim hats, and UPF clothing.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER SECTION -->
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-brand">
+      <h2>☀️ SPFreak</h2>
+      <p>Helping you stay sun-safe every day with real-time UV alerts & sunscreen tips.</p>
+    </div>
+
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#uv-section">Check UV</a></li>
+        <li><a href="#spf-tips">SPF Tips</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <h3>Contact</h3>
+      <p>Email: <a href="mailto:support@spfreak.com">support@spfreak.com</a></p>
+      <div class="social-icons">
+        <a href="#"><img src="/icons/instagram.svg" alt="Instagram"></a>
+        <a href="#"><img src="/icons/twitter.svg" alt="Twitter"></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 SPFreak. All rights reserved.</p>
+  </div>
+</footer>
+
+
+
+
+</body>
+</html>
